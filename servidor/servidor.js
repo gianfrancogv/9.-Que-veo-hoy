@@ -14,6 +14,17 @@ app.use(bodyParser.urlencoded({
 
 app.use(bodyParser.json());
 
+var router = express.Router();
+
+const peliculas = router.get('/', (req, res, next) => {
+  console.log("Entró a la ruta peliculas");
+  controlador.getpelicula(req, resp => { 
+    res.json(resp);
+  });
+});
+
+app.use('/peliculas', peliculas);
+
 //seteamos el puerto en el cual va a escuchar los pedidos la aplicación
 var puerto = '8080';
 
